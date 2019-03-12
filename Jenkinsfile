@@ -33,7 +33,7 @@ node('maven'){
       
       //  sshagent(['dockerpass1']) {
     //sh "ssh -o StrictHostKeyChecking=no prabhu4tx@10.128.0.3 ${runtomcat}"
-}
+
   }
 }
 }
