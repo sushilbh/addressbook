@@ -27,3 +27,4 @@ node('maven'){
        sh "ssh -o StrictHostKeyChecking=no deployusr@35.153.80.91 /opt/tomcat/stop.sh"
    }
 }
+}
