@@ -16,7 +16,7 @@ node('maven'){
         sh "$mvnhome/bin/mvn clean package -DskipTests=true"
     }
       stage('archieving artifacts'){
-        archiveArtifacts '/target/**/*'
+        archiveArtifacts '/home/ec2-user/workspace/pipeline2/addressbook_main/target/*.jar'
     }
   //  stage('deployment'){
     //    sshagent(['deployusr']) {
