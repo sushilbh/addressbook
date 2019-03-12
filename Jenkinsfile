@@ -15,9 +15,9 @@ node('maven'){
     stage ('package'){
         sh "$mvnhome/bin/mvn clean package -DskipTests=true"
     }
-   // stage('archieving artifacts'){
-   //     archiveArtifacts 'target/**/*'
- //  }
+    stage('archieving artifacts'){
+        archiveArtifacts '**/target/*.jar'
+   }
   //  stage('deployment'){
     //    sshagent(['deployusr']) {
     // some block
