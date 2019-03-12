@@ -19,12 +19,13 @@ node('maven'){
         archiveArtifacts '**/target/*'
    }
    stage('deployment'){
-       sshagent(['deployusr']) {
+       //sshagent(['deployusr']) {
     // some block
+        sh "$mvnhome/bin/mvn clean install"
        
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@35.153.80.91 /opt/tomcat/start.sh"
-       sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline2/addressbook_main/target/addressbook.war ec2-user@35.153.80.91:/opt/tomcat/"
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@35.153.80.91 /opt/tomcat/stop.sh"
+       //sh "ssh -o StrictHostKeyChecking=no ec2-user@35.153.80.91 /opt/tomcat/start.sh"
+       //sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline2/addressbook_main/target/addressbook.war ec2-user@35.153.80.91:/opt/tomcat/"
+       //sh "ssh -o StrictHostKeyChecking=no ec2-user@35.153.80.91 /opt/tomcat/stop.sh"
    }
 }
 }
