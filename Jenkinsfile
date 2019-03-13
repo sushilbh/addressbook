@@ -22,7 +22,7 @@ node('maven'){
        //sshagent(['deployusr']) {
     // some block
         sh "$mvnhome/bin/mvn clean install"
-        cp  /home/ec2-user/workspace/pipeline2/addressbook_main/target*.war /opt/tomcat/webapp
+        //cp  /home/ec2-user/workspace/pipeline2/addressbook_main/target*.war /opt/tomcat/webapp
 
 
        
