@@ -20,7 +20,7 @@ node('maven'){
     }
        stage('Post Build Actions'){
         sh '''
-        echo "file status" | mutt -s "file hasn't arrived" robin.awscloud@gmail.com
+        echo "file status" | mutt -s "file hasn't arrived" myemail@gmail.com
         '''
     }
       stage('Backup the JAR') {
