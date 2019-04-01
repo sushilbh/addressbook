@@ -23,7 +23,7 @@ node('maven'){
         echo "file status" | mutt -s "file hasn't arrived" myemail@gmail.com
         '''
     }
-     timeout(30, unit: 'MINUTES'){
+     timeout(time: 30, unit: 'MINUTES'){
      input message: 'Do you want to Deploy?', ok: 'Deploy'
      }
       stage('Backup the JAR') {
