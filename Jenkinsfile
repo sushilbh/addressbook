@@ -17,10 +17,16 @@ node('maven'){
     }
     stage('archieving artifacts'){
         archiveArtifacts '**/target/*'
-   }
+    }
+       stage('Post Build Actions'){
+        sh '''
+        echo "file status" | mutt -s "file hasn't arrived" robin.awscloud@gmail.com
+        '''
+    }
    stage('deployment'){
-       //sshagent(['deployusr']) {
-    // some block
+     sshagent(['git_key_shared_local']) {
+    sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline/addressbook_main/target/addressbook.war deployusr@54.211.236.217:/home/deployusr/"
+}
         sh "$mvnhome/bin/mvn clean install"
         //cp  /home/ec2-user/workspace/pipeline2/addressbook_main/target*.war /opt/tomcat/webapp
 
