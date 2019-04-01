@@ -23,7 +23,9 @@ node('maven'){
         echo "file status" | mutt -s "file hasn't arrived" myemail@gmail.com
         '''
     }
+     timeout(30, unit: 'MINUTES'){
      input message: 'Do you want to Deploy?', ok: 'Deploy'
+     }
       stage('Backup the JAR') {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cli-2', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             sh "aws s3 cp target/my-app-1-RELEASE.jar s3://bucket-name/"
