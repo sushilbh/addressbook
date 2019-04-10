@@ -27,9 +27,11 @@ node('maven'){
    //  input message: 'Do you want to Deploy?', ok: 'Deploy'
   //   }
       stage('Backup the JAR') {
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cli-2', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-            sh "aws s3 cp target/my-app-1-RELEASE.jar s3://bucket-name/"
-        }
+    //    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cli-2', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+     //       sh "aws s3 cp target/my-app-1-RELEASE.jar s3://bucket-name/"
+     //   }
+           
+      }
    stage('deployment.'){
      sshagent(['git_key_shared_local']) {
      sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline/addressbook_main/target/addressbook.war deployuser@54.204.236.143:/home/deployuser/"
