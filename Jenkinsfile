@@ -1,4 +1,5 @@
 node('maven'){
+    {
     def mavenHome = tool name: 'maven360', type: 'maven'
 }
 stage('checking out SCM'){
@@ -17,4 +18,5 @@ stage('Archiving package'){
 }
 stage('Publishing HTML reports'){
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'publish-by-sushil', reportTitles: ''])
+}
 }
