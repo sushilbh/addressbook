@@ -6,7 +6,7 @@ stage('checking out SCM'){
 stage('Executing test cases'){
    sh "${mavenHome}/bin/mvn clean compile"
    junit allowEmptyResults: true, testResults:'target/surfire-reports/*.xml'
-   sh "$mvnhome/bin/mvn clean test surefire-report:report-only"
+   sh "$mavenhome/bin/mvn clean test surefire-report:report-only"
 }
 stage('Packaging software'){
     sh "${mavenHome}/bin/mvn package"
