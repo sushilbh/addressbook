@@ -22,5 +22,3 @@ withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariab
     sh "aws s3 cp /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war s3://sushil-bh/"
 }
 }
-}
-}
