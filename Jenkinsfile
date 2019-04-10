@@ -23,6 +23,6 @@ withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariab
 }
 stage('Deploying .war file to the target machine')
 sshagent(['bran-new-with-dpak-jee']) {
-    sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war ec2-user@3.86.204.156:/home
+    sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war ec2-user@3.86.204.156:/home/ec2-user
 }
 }
