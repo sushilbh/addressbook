@@ -5,14 +5,14 @@ stage('checking out SCM'){
 }
 stage('Executing test cases'){
    sh "${mavenHome}/bin/mvn clean compile"
-   junit 'target/surfire-reports/*.xml'
-   sh "$mvnhome/bin/mvn clean test surefire-report:report-only"
+   junit allowEmptyResults: true, testResults:'target/surfire-reports/*.xml'
+    sh "${mavenHome}/bin/mvn clean test surefire-report:report-only"
 }
 stage('Packaging software'){
     sh "${mavenHome}/bin/mvn package"
 }
 stage('Archiving package'){
-    archiveArtifacts 'target/surfire-reports/*'
+    archiveArtifacts allowEmptyArchive: true, artifacts: 'target/surfire-reports/*'
 }
 stage('Publishing HTML reports'){
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'publish-by-sushil', reportTitles: ''])
@@ -20,5 +20,6 @@ stage('Publishing HTML reports'){
 stage ('Sending .war file for backup in AWS S3 Bucket')
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
     sh "aws s3 cp /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war s3://sushil-bh/"
+}
 }
 }
