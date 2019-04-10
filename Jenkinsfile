@@ -34,7 +34,7 @@ node('maven'){
       }
    stage('deployment.'){
      sshagent(['git_key_shared_local']) {
-     sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline/addressbook_main/target/addressbook.war deployuser@184.73.101.252:/home/deployuser/"
+     sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/pipeline/addressbook_main/target/addressbook.war deployuser@184.73.101.252:/home/deployuser/tomcat-9/webapps"
 }
         sh "$mvnhome/bin/mvn clean install"
         //cp  /home/ec2-user/workspace/pipeline2/addressbook_main/target*.war /opt/tomcat/webapp
