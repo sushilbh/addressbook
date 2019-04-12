@@ -17,12 +17,12 @@ stage('Archiving package'){
 stage('Publishing HTML reports'){
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'publish-by-sushil', reportTitles: ''])
 }
-stage('Sending .war file for backup in AWS S3 Bucket')
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    sh "aws s3 cp /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war s3://sushil-bh/"
-}
-stage('Deploying .war file to the target machine')
-sshagent(['bran-new-with-dpak-jee']) {
-    sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war ec2-user@3.86.204.156:/home/ec2-user"
-}
+//stage('Sending .war file for backup in AWS S3 Bucket')
+//withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+  //  sh "aws s3 cp /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war s3://sushil-bh/"
+//}
+//stage('Deploying .war file to the target machine')
+//sshagent(['bran-new-with-dpak-jee']) {
+  //  sh "scp -o StrictHostKeyChecking=no /home/ec2-user/workspace/project-2/addressbook_main/target/addressbook.war ec2-user@3.86.204.156:/home/ec2-user"
+//}
 }
