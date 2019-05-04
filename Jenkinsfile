@@ -8,7 +8,7 @@ stage('Executing test cases'){
    junit allowEmptyResults: true, testResults:'target/surfire-reports/*.xml'
     sh "${mavenHome}/bin/mvn clean test surefire-report:report-only"
 }
-stage('Packaging software'){
+stage('Packaging software before archiving'){
     sh "${mavenHome}/bin/mvn package"
 }
 stage('Archiving package'){
